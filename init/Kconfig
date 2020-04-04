@@ -164,6 +164,14 @@ config INLINE_OPTIMIZATION
 	  more control on how much is inlined to further optimise the kernel for
 	  certain workloads.
 
+config LOCALVERSION_SHA
+	bool "Leave only current tree"
+	default y
+	depends on LOCALVERSION_AUTO
+	depends on !COMPILE_TEST
+	help
+	  A cleaner version of LOCALVERSION_AUTO, contains current tree.
+
 config HAVE_KERNEL_GZIP
 	bool
 
