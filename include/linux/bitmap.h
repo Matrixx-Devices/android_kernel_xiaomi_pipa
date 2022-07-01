@@ -138,7 +138,7 @@ extern bool __bitmap_intersects(const unsigned long *bitmap1,
 			 const unsigned long *bitmap2, unsigned int nbits);
 extern bool __bitmap_subset(const unsigned long *bitmap1,
 			 const unsigned long *bitmap2, unsigned int nbits);
-extern int __bitmap_weight(const unsigned long *bitmap, unsigned int nbits);
+extern unsigned long __bitmap_weight(const unsigned long *bitmap, unsigned int nbits);
 extern void __bitmap_set(unsigned long *map, unsigned int start, int len);
 extern void __bitmap_clear(unsigned long *map, unsigned int start, int len);
 
@@ -381,7 +381,8 @@ static inline int bitmap_full(const unsigned long *src, unsigned int nbits)
 	return find_first_zero_bit(src, nbits) == nbits;
 }
 
-static __always_inline int bitmap_weight(const unsigned long *src, unsigned int nbits)
+static __always_inline
+unsigned long bitmap_weight(const unsigned long *src, unsigned int nbits)
 {
 	if (small_const_nbits(nbits))
 		return hweight_long(*src & BITMAP_LAST_WORD_MASK(nbits));
