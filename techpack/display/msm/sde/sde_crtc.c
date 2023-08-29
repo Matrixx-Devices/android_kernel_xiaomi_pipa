@@ -912,7 +912,7 @@ static u32 _sde_crtc_get_displays_affected(struct drm_crtc *crtc,
 	int i;
 
 	if (!crtc || !state) {
-		pr_err("Invalid crtc or state\n");
+		pr_debug("Invalid crtc or state\n");
 		return 0;
 	}
 
